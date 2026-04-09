@@ -142,13 +142,15 @@ Adapt sections to match the original report's structure."""
 CLINICAL REPORT:
 {raw_text}"""
 
-    message = client.messages.create(
-        model="claude-opus-4-5",
-        max_tokens=4000,
-        system=system,
-        messages=[{"role": "user", "content": user}]
-    )
-    return message.content[0].text
+    response = client.chat.completions.create(
+    model="llama-3.3-70b-versatile",
+    max_tokens=4000,
+    messages=[
+        {"role": "system", "content": system},
+        {"role": "user", "content": user}
+    ]
+)
+return response.choices[0].message.content
 
 
 # ─── PDF GENERATION ───────────────────────────────────────────────────────────
