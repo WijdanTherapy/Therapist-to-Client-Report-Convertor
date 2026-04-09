@@ -1,7 +1,6 @@
 import streamlit as st
 import pdfplumber
 import fitz  # PyMuPDF
-from anthropic import Anthropic
 from reportlab.lib.pagesizes import A4
 from reportlab.lib import colors
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
@@ -107,8 +106,9 @@ def extract_pdf_metadata(raw_text: str) -> dict:
 
 
 def call_claude_for_client_report(raw_text: str) -> str:
-    """Send therapist text to Claude and get a client-friendly interpretation."""
-    client = Anthropic()
+    """Send therapist text to Groq and get a client-friendly interpretation."""
+    from groq import Groq
+    client = Groq(api_key=st.secrets["GROQ_API_KEY"])
 
     system = """You are a compassionate psychologist writing a **personal feedback letter** for a client.
 
