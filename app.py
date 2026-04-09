@@ -143,14 +143,14 @@ CLINICAL REPORT:
 {raw_text}"""
 
     response = client.chat.completions.create(
-    model="llama-3.3-70b-versatile",
-    max_tokens=4000,
-    messages=[
-        {"role": "system", "content": system},
-        {"role": "user", "content": user}
-    ]
-)
-return response.choices[0].message.content
+        model="llama-3.3-70b-versatile",
+        max_tokens=4000,
+        messages=[
+            {"role": "system", "content": system},
+            {"role": "user", "content": user}
+        ]
+    )
+    return response.choices[0].message.content
 
 
 # ─── PDF GENERATION ───────────────────────────────────────────────────────────
